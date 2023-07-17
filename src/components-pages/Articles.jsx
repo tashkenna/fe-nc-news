@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getArticles().then(({ articles }) => {

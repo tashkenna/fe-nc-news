@@ -19,6 +19,12 @@
 
 }
 
+.nav-bar {
+    display: flex; 
+    justify-content: space-between;
+
+}
+
 .nav-text {
     padding-left: 1rem;
 }
@@ -28,14 +34,14 @@
     width: auto;
 }
 
-.login {
+.nav-bar-link {
     background-color: transparent;
     color: rgba(255, 0, 0, 0.769);
     border: none;
     font-size: 1rem;
     text-decoration: underline;
     font-weight: 800;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .articles-container {
