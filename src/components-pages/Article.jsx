@@ -7,7 +7,7 @@ export const Article = () => {
 
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
-  const [userVotes, setUserVotes] = useState(0);
+  
 
   useEffect(() => {
     getArticleByID(id).then(({ article }) => {
@@ -20,16 +20,6 @@ export const Article = () => {
     return <div>Loading...</div>;
   }
 
-  const handleClick = () => {
-    setUserVotes((currentUserVotes) => currentUserVotes + 1);
-  
-    patchArticleVotes(id, userVotes + 1)
-      .then((response) => {
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
 
   return (
@@ -40,14 +30,8 @@ export const Article = () => {
         <img src={article.article_img_url} alt="Article" />
         <h3>Written by {article.author}</h3>
         <p>{article.body}</p>
-        <h3>Votes: {article.votes + userVotes}</h3>
-        <button
-          onClick={handleClick}
-          disabled={userVotes > 0}
-          className="vote-button"
-        >
-          vote
-        </button>
+        <h3>Votes: {article.votes}</h3>
+        
       </section>
 
       <Comments id={id} />
