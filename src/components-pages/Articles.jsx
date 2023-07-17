@@ -33,6 +33,7 @@ export const Articles = () => {
             title={article.title}
             topic={article.topic}
             article_img_url={article.article_img_url}
+            article_id={article.article_id}
         /> 
     )
     }
