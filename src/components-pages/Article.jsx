@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleByID } from "../api/api";
+import { Comments } from "../components/Comments";
 
 export const Article = () => {
     const { id } = useParams();
@@ -29,6 +30,10 @@ export const Article = () => {
          <p>{article.body}</p>
          <h3>Votes: {article.votes}</h3>
         </section>
+
+        <Comments 
+            id={id}
+        />
         </div>
     )
 
