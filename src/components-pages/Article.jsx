@@ -18,8 +18,6 @@ export const Article = () => {
       if (loading) {
         return <div>Loading...</div>;
       }
-    
-
 
 
     return (<div className="article-page">
@@ -28,8 +26,6 @@ export const Article = () => {
          <p>Topic: {article.topic}</p>
          <img src={article.article_img_url}/>
          <h3>Written by {article.author}</h3>
-        
-         {/* <p>Date written: {article.written_at}</p> */}
          <p>{article.body}</p>
          <h3>Votes: {article.votes}</h3>
         </section>
