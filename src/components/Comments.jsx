@@ -6,6 +6,7 @@ export const Comments = (params) => {
   const [comments, setComments] = useState();
   const [loading, setLoading] = useState(true);
 
+
 const {id} = params
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const {id} = params
               author={comment.author}
               body={comment.body}
               votes={comment.votes}
+              comment_id={comment.comment_id}
             />
           ))}
         </>
