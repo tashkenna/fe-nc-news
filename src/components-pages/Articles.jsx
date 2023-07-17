@@ -21,8 +21,11 @@ export const Articles = () => {
 
 
   return (
+    <div className="articles-page">
+    <h1 className="page-header">Articles</h1>
     
-    <div className="articles-container"> 
+
+    <section className="articles-container"> 
 
     {articles.map(article => 
         <ArticleCard
@@ -34,6 +37,7 @@ export const Articles = () => {
     )
     }
   
+    </section>
     </div>
    
   )
