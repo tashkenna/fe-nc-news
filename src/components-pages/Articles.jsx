@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
-import { ArticleCard } from "./ArticleCard";
+import { ArticleCard } from "../components/ArticleCard";
 import { Link } from "react-router-dom";
 
 
@@ -9,10 +9,14 @@ export const Articles = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getArticles().then(({ articles }) => {
+    getArticles()
+    .then(({ articles }) => {
       setArticles(articles);
       setLoading(false);
-    });
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }, []);
 
   if (loading) {
