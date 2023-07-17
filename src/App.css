@@ -103,3 +103,26 @@
     padding-bottom: 1rem;
 }
 
+
+.article-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40rem;
+}
+
+.article h1 {
+    text-align: center;
+}
+.article img {
+    width: 40rem;
+}
+
+.article p {
+    text-align: center;
+}
