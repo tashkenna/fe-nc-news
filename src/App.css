@@ -1,0 +1,73 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100&display=swap');
+
+
+* {
+    font-family: Public Sans;
+}
+
+.nav {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+
+}
+
+.nav-text {
+    padding-left: 1rem;
+}
+
+.logo {
+    height: 6rem;
+    width: auto;
+}
+
+.login {
+    background-color: transparent;
+    color: rgba(255, 0, 0, 0.769);
+    border: none;
+    font-size: 1rem;
+    text-decoration: underline;
+    font-weight: 800;
+    padding: 1rem;
+}
+
+.articles-container {
+    display:flex;
+    flex-wrap: wrap;
+   
+}
+
+.article-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35em;
+   
+    background-color: rgba(128, 128, 128, 0.22);
+    border-radius: 9px;
+    margin: 2rem;
+
+}
+
+.article-preview-image {
+    width: 30rem;
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+.article-preview-title {
+    width: 30rem;
+    text-align: center;
+}
+
+.article-preview-topic {
+    color: rgba(0, 0, 0, 0.401);
+}
+
