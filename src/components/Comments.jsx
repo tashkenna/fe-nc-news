@@ -23,19 +23,23 @@ const {id} = params
   if (loading) {
     return <div>Comments loading...</div>;
   }
-
   return (
     <div className="comment-section">
-    <h2>Comments</h2>
-    {comments.map((comment)=> {
-    return <CommentCard
-    key={comment.commend_id}
-    author={comment.author}
-    body={comment.body}
-    votes={comment.votes}
-    />
-    }) }
+      {comments === undefined ? <h2>No comments</h2> : (
+        <>
+          <h2>Comments</h2>
+          {comments.map((comment) => (
+            <CommentCard
+              key={comment.comment_id}
+              author={comment.author}
+              body={comment.body}
+              votes={comment.votes}
+            />
+          ))}
+        </>
+      )
+      }
     </div>
-
-  )
+  );
+  
 };
