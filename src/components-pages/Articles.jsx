@@ -23,17 +23,17 @@ export const Articles = () => {
   return (
     
     <div className="articles-container"> 
-    <Link >
+
     {articles.map(article => 
         <ArticleCard
-            key={article.created_at}
+            key={article.article_id}
             title={article.title}
             topic={article.topic}
             article_img_url={article.article_img_url}
         /> 
     )
     }
-    </Link>
+  
     </div>
    
   )
