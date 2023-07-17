@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
-import { Article } from "./Article";
+import { ArticleCard } from "./ArticleCard";
+import { Link } from "react-router-dom";
+
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -19,9 +21,11 @@ export const Articles = () => {
 
 
   return (
+    
     <div className="articles-container"> 
+    <Link >
     {articles.map(article => 
-        <Article
+        <ArticleCard
             key={article.created_at}
             title={article.title}
             topic={article.topic}
@@ -29,8 +33,8 @@ export const Articles = () => {
         /> 
     )
     }
-    
+    </Link>
     </div>
-
+   
   )
 };

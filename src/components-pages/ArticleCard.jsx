@@ -1,4 +1,4 @@
-export const Article = (props) => {
+export const ArticleCard = (props) => {
  
   const { title, topic, article_img_url } = props;
 
