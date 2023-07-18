@@ -26,7 +26,6 @@ export const Articles = () => {
   return (
     <div className="articles-page">
     <h1 className="page-header">Articles</h1>
-    
 
     <section className="articles-container"> 
 

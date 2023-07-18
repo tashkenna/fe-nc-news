@@ -8,7 +8,6 @@ export const Comments = (params) => {
   const [comments, setComments] = useState();
   const [loading, setLoading] = useState(true);
   const [commentPosted, setCommentPosted] = useState(false);
-  const [loadingComment, setloadingComment] = useState(false);
 
 const {id} = params
 
@@ -20,7 +19,6 @@ const {id} = params
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
       });
   }, [id]);
 
@@ -28,10 +26,8 @@ const {id} = params
     return <div>Comments loading...</div>;
   }
 
-  const handleCommentPosted = (newComment) => {
-    console.log(newComment)
-    let newCom = {author: newComment.username, body: newComment.body, votes: 0}
-    setComments((prevComments) => [newCom, ...prevComments])
+  const handleCommentPosted = ({comment}) => {
+    setComments((prevComments) => [comment, ...prevComments])
     setCommentPosted(!commentPosted);
   };
 

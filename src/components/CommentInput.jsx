@@ -34,14 +34,14 @@ export const CommentInput = (params) => {
     postCommentByArticleID(id, body)
       .then((data) => {
         setLoading(false);
-        onCommentPosted(body);
+        onCommentPosted(data);
         setComment("");
       })
 
       .catch((err) => {
         setError(true);
         setLoading(false);
-        console.log(err);
+  
       });
   };
 
