@@ -25,9 +25,13 @@ export const Articles = () => {
 
   return (
     <div className="articles-page">
-    <h1 className="page-header">Articles</h1>
-    
-
+    <h1 className="page-header">articles</h1>
+    <section className="topic-buttons">
+    <button className="topic-button">all</button>
+    <button className="topic-button">coding</button>
+    <button className="topic-button">cooking</button>
+    <button className="topic-button">football</button>
+    </section>
     <section className="articles-container"> 
 
     {articles.map(article => 
