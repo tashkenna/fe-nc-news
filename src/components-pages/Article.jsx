@@ -8,12 +8,18 @@ export const Article = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
   const [userVotes, setUserVotes] = useState(0);
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
     getArticleByID(id).then(({ article }) => {
       setArticle(article);
       setLoading(false);
-    });
+    })
+    .catch((err) => {
+      console.log(err)
+      setLoading(false)
+      setIsError(true)
+    })
   }, [id]); 
 
   if (loading) {
@@ -21,13 +27,17 @@ export const Article = () => {
   }
 
   const handleClick = () => {
-    setUserVotes((currentUserVotes) => currentUserVotes + 1);
-  
-    patchArticleVotes(id, userVotes + 1)
-      .then((res) => {
+    const newVotes = userVotes > 0 ? userVotes - 1 : userVotes + 1;
+
+    patchArticleVotes(id, newVotes)
+      .then(() => {
+        setUserVotes(newVotes);
+        setIsError(false)
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err)
+       setIsError(true) 
+    
       });
   };
 
@@ -42,11 +52,11 @@ export const Article = () => {
         <h3>Votes: {article.votes + userVotes}</h3>
         <button
           onClick={handleClick}
-          disabled={userVotes > 0}
           className="vote-button"
         >
           vote
         </button>
+        {isError ? <p>somethings gone wrong, please try again</p> : ""}
       </section>
 
       <Comments id={id} />

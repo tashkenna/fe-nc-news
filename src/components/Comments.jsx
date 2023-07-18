@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticleID } from "../api/api";
 import { CommentCard } from "./CommentsCard";
+// import { CommentInput } from "./CommentInput";
 
 export const Comments = (params) => {
   const [comments, setComments] = useState();
   const [loading, setLoading] = useState(true);
-
+  // const [commentPosted, setCommentPosted] = useState(false);
 
 const {id} = params
 
@@ -19,11 +20,16 @@ const {id} = params
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   if (loading) {
     return <div>Comments loading...</div>;
   }
+
+  // const handleCommentPosted = () => {
+  //   setCommentPosted(!commentPosted);
+  // };
+
   return (
     <div className="comment-section">
       {comments === undefined ? <h2>No comments</h2> : (
@@ -41,6 +47,9 @@ const {id} = params
         </>
       )
       }
+      {/* <CommentInput
+      id={id}
+      onCommentPosted={handleCommentPosted}/> */}
     </div>
   );
   
