@@ -26,21 +26,21 @@ export const Article = () => {
     return <div>Loading...</div>;
   }
 
+ 
   const handleClick = () => {
-    const newVotes = userVotes > 0 ? userVotes - 1 : userVotes + 1;
+    const newVotes = userVotes === 0 ? 1 : -1;
+
+    setUserVotes((prevVotes) => prevVotes + newVotes);
 
     patchArticleVotes(id, newVotes)
       .then(() => {
-        setUserVotes(newVotes);
-        setIsError(false)
+        setIsError(false);
       })
       .catch((err) => {
-        console.log(err)
-       setIsError(true) 
-    
+        console.log(err);
+        setIsError(true);
       });
   };
-
   return (
     <div className="article-page">
       <section className="article">
