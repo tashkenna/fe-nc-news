@@ -15,20 +15,23 @@ const {id} = params
   useEffect(() => {
     getCommentsByArticleID(id)
       .then(({ comments }) => {
+        comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setComments(comments);
-    
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [id, commentPosted]);
+  }, [id]);
 
   if (loading) {
     return <div>Comments loading...</div>;
   }
 
-  const handleCommentPosted = () => {
+  const handleCommentPosted = (newComment) => {
+    console.log(newComment)
+    let newCom = {author: newComment.username, body: newComment.body, votes: 0}
+    setComments((prevComments) => [newCom, ...prevComments])
     setCommentPosted(!commentPosted);
   };
 
@@ -37,6 +40,10 @@ const {id} = params
       {comments === undefined ? <h2>No comments</h2> : (
         <>
           <h2>Comments</h2>
+          <CommentInput
+      id={id}
+      onCommentPosted={handleCommentPosted}
+      />
           {comments.map((comment) => (
             <CommentCard
               key={comment.comment_id}
@@ -49,9 +56,7 @@ const {id} = params
         </>
       )
       }
-      <CommentInput
-      id={id}
-      onCommentPosted={handleCommentPosted}/>
+    
     </div>
   );
   

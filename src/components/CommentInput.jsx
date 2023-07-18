@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getCommentsByArticleID, postCommentByArticleID } from "../api/api";
 
 export const CommentInput = (params) => {
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState([]);
   const [loading, setLoading] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
   const [error, setError] = useState(false)
@@ -10,11 +10,6 @@ export const CommentInput = (params) => {
   const [commentEmpty, setCommentEmpty] = useState(false)
 
   const { id, onCommentPosted} = params;
-
-  useEffect(() => {
-  }, [commentSubmitted]);
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +37,7 @@ export const CommentInput = (params) => {
       .then((data) => {
         setLoading(false);
         setCommentSubmitted(true);
-        onCommentPosted()
+        onCommentPosted(body)
         setComment("")
       })
 
@@ -78,7 +73,7 @@ export const CommentInput = (params) => {
         {commentWarning ? <p>Comment is {comment.length - 300} characters over limit</p> : null}
         {commentEmpty ? <p>Comment is empty</p> : null}
       {error ? <p>Error posting comment</p> : null}
-        <button className="comment-button" type="submit" disabled={commentWarning}>comment</button>
+        <button className="comment-button" type="submit" disabled={commentWarning || loading}>comment</button>
       </form>
       
     </div>
