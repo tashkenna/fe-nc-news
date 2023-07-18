@@ -142,6 +142,7 @@
     margin-bottom: 2rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    width: 40rem;
 }
 
 .comment-author {
@@ -169,5 +170,33 @@
 }
 
 .vote-button:hover {
+    transform: scale(1.2);
+  }
+
+.comment-input {
+    width: 40rem; 
+    height: 5rem;
+    background-color: rgba(128, 128, 128, 0.105);
+    border: none;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+  
+}
+
+.comment-button {
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(216,55,50);
+    border: 1px solid rgb(216,55,50);
+    border-radius: 2rem;
+    padding: 0.5rem;
+    font-weight: 100;
+    transition: transform 0.3s;
+}
+
+.comment-button:hover {
     transform: scale(1.2);
   }

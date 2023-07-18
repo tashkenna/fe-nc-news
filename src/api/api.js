@@ -24,4 +24,7 @@ export const patchArticleVotes = async (id, body) => {
     return res.data
 }
 
-
+export const postCommentByArticleID = async (id, body) => {
+    const res = await api.post(`articles/${id}/comments`, body)
+    return res.data
+}
