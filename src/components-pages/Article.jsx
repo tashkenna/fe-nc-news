@@ -8,25 +8,25 @@ export const Article = () => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
   const [userVotes, setUserVotes] = useState(0);
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    getArticleByID(id).then(({ article }) => {
-      setArticle(article);
-      setLoading(false);
-    })
-    .catch((err) => {
-
-      setLoading(false)
-      setIsError(true)
-    })
-  }, [id]); 
+    getArticleByID(id)
+      .then(({ article }) => {
+        setArticle(article);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setIsError(true);
+      });
+  }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="loading-text">loading article...</div>;
   }
 
- 
+
   const handleClick = () => {
     const newVotes = userVotes === 0 ? 1 : -1;
 
@@ -49,10 +49,7 @@ export const Article = () => {
         <h3>Written by {article.author}</h3>
         <p>{article.body}</p>
         <h3>Votes: {article.votes + userVotes}</h3>
-        <button
-          onClick={handleClick}
-          className="vote-button"
-        >
+        <button onClick={handleClick} className="vote-button">
           vote
         </button>
         {isError ? <p>somethings gone wrong, please try again</p> : ""}

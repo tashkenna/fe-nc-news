@@ -58,7 +58,7 @@ export const CommentInput = (params) => {
 
   return (
     <div className="post-comment-card">
-      {loading ? <p>Loading comment...</p> : null}
+      {loading ? <p className="loading-text">loading comment...</p> : null}
       <form className="comment-form" onSubmit={handleSubmit}>
         <textarea
           className="comment-input"

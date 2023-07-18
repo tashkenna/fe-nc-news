@@ -1,38 +1,47 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
-import { ArticleCard } from "../components/ArticleCard";
 import { Categories } from "../components/Categories";
-import { Filter } from "../components/Filter";
+import { ArticleCard } from "../components/ArticleCard";
 import { sortArticles } from "../components/Utils/sortArticles";
+import { Filter } from "../components/Filter";
 
-export const Articles = () => {
+export const Cooking = () => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [sortingOption, setSortingOption] = useState("date descending");
 
   useEffect(() => {
+    setLoading(true);
     getArticles()
       .then(({ articles }) => {
-        setArticles(articles);
+        const cookingArticles = articles.filter(
+          (article) => article.topic === "cooking"
+        );
+        setArticles(cookingArticles);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-
-  const sortedArticles = sortArticles(articles, sortingOption);
 
   if (loading) {
     return <div className="loading-text">loading articles...</div>;
   }
 
+  const sortedArticles = sortArticles(articles, sortingOption)
+
   return (
     <div className="articles-page">
-      <h1 className="page-header">all articles</h1>
+      <h1 className="page-header">articles on cooking</h1>
+
       <Categories />
+
       <section className="filter">
         <p className="filter-text">sort by:</p>
         <Filter onChange={(value) => setSortingOption(value)} />
       </section>
+
       <section className="articles-container">
         {sortedArticles.map((article) => (
           <ArticleCard
