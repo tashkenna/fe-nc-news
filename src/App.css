@@ -203,3 +203,30 @@
 .comment-button:hover {
     transform: scale(1.2);
   }
+
+
+  .topic-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+.topic-button {
+    align-items: center;
+    background-color: rgb(216,55,50);
+    color: rgb(255, 255, 255);
+    border: rgb(216,55,50);
+    border-radius: 2rem;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 200;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 1.7rem;
+    margin-right: 2.5rem;
+
+    transition: transform 0.3s;
+}
+

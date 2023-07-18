@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getCommentsByArticleID, postCommentByArticleID } from "../api/api";
+import { useState } from "react";
+import { postCommentByArticleID } from "../api/api";
 
 export const CommentInput = (params) => {
   const [comment, setComment] = useState([]);
