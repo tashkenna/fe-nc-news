@@ -4,55 +4,51 @@ import { getCommentsByArticleID, postCommentByArticleID } from "../api/api";
 export const CommentInput = (params) => {
   const [comment, setComment] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [commentSubmitted, setCommentSubmitted] = useState(false);
-  const [error, setError] = useState(false)
-  const [commentWarning, setCommentWarning] = useState(false)
-  const [commentEmpty, setCommentEmpty] = useState(false)
+  const [error, setError] = useState(false);
+  const [commentWarning, setCommentWarning] = useState(false);
+  const [commentEmpty, setCommentEmpty] = useState(false);
 
-  const { id, onCommentPosted} = params;
+  const { id, onCommentPosted } = params;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     if (comment.length > 1000) {
-        setCommentWarning(true);
-        return; 
-      }
+      setCommentWarning(true);
+      return;
+    }
 
-      if(comment.length === 0) {
-        setCommentEmpty(true)
-        return
-      }
+    if (comment.length === 0) {
+      setCommentEmpty(true);
+      return;
+    }
 
     setLoading(true);
-    setError(false)
-    
+    setError(false);
+
     const body = {
-        username: "grumpy19",
-      body: comment
+      username: "grumpy19",
+      body: comment,
     };
 
     postCommentByArticleID(id, body)
       .then((data) => {
         setLoading(false);
-        setCommentSubmitted(true);
-        onCommentPosted(body)
-        setComment("")
+        onCommentPosted(body);
+        setComment("");
       })
 
       .catch((err) => {
-        setError(true)
+        setError(true);
         setLoading(false);
         console.log(err);
       });
   };
 
-
   const handleCommentChange = (e) => {
     const commentValue = e.target.value;
     setComment(commentValue);
-    setCommentEmpty(false)
+    setCommentEmpty(false);
     if (commentValue.length > 300) {
       setCommentWarning(true);
     } else {
@@ -62,7 +58,7 @@ export const CommentInput = (params) => {
 
   return (
     <div className="post-comment-card">
-    {loading ? <p>Loading comment...</p> : null }
+      {loading ? <p>Loading comment...</p> : null}
       <form className="comment-form" onSubmit={handleSubmit}>
         <textarea
           className="comment-input"
@@ -70,12 +66,19 @@ export const CommentInput = (params) => {
           value={comment}
           onChange={handleCommentChange}
         />
-        {commentWarning ? <p>Comment is {comment.length - 300} characters over limit</p> : null}
+        {commentWarning ? (
+          <p>Comment is {comment.length - 300} characters over limit</p>
+        ) : null}
         {commentEmpty ? <p>Comment is empty</p> : null}
-      {error ? <p>Error posting comment</p> : null}
-        <button className="comment-button" type="submit" disabled={commentWarning || loading}>comment</button>
+        {error ? <p>Error posting comment</p> : null}
+        <button
+          className="comment-button"
+          type="submit"
+          disabled={commentWarning || loading}
+        >
+          comment
+        </button>
       </form>
-      
     </div>
   );
 };
