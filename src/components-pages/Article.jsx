@@ -16,7 +16,7 @@ export const Article = () => {
       setLoading(false);
     })
     .catch((err) => {
-      console.log(err)
+
       setLoading(false)
       setIsError(true)
     })
@@ -37,7 +37,6 @@ export const Article = () => {
         setIsError(false);
       })
       .catch((err) => {
-        console.log(err);
         setIsError(true);
       });
   };
