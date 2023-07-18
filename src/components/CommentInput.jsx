@@ -28,7 +28,7 @@ export const CommentInput = (params) => {
 
     const body = {
       username: "grumpy19",
-      body: comment,
+      body: comment
     };
 
     postCommentByArticleID(id, body)
