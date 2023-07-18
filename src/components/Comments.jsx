@@ -27,7 +27,6 @@ const {id} = params
   }
 
   const handleCommentPosted = ({comment}) => {
-    console.log(comment)
     const newComment = {...comment, votes: 0}
     setComments((prevComments) => [newComment, ...prevComments])
     setCommentPosted(!commentPosted);
