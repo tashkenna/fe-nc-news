@@ -57,6 +57,7 @@ export const Articles = () => {
       <button className="sortby-buttons" onClick={() => setSortOrder("asc")}>ascending</button>
       <button className="sortby-buttons" onClick={() => setSortOrder("desc")}>descending</button>
       </section>
+      <p className="sortby-text-default">default: date descending</p>
       </section>
 
       {loading && <p className="loading-text">loading articles..</p>}

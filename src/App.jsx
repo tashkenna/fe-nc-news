@@ -3,6 +3,7 @@ import './App.css'
 import { Nav } from './components-permanent/Nav'
 import { Articles } from './components-pages/Articles'
 import { Article } from './components-pages/Article'
+import { Login } from './components-pages/Login'
 
 function App() {
   return <div> 
@@ -10,6 +11,7 @@ function App() {
   <Routes>
     <Route path="/articles" element={<Articles />} />
     <Route path='/articles/:id' element={<Article />} />
+    <Route path='/login' element={<Login />} />
   </Routes>
   </div>
 }

@@ -1,4 +1,13 @@
+import { useState } from "react"
+
 export const Login = () => {
-    return <button className="login">login</button>
+    const [user, setUser] = useState("")
+
+    return <div> 
+    <form>
+    <input value={user} id="username" className="input-box" placeHolder="username"></input>
+    <button>Login</button>
+    </form>
+    </div>
 }
 

@@ -291,3 +291,9 @@ color: rgb(216,55,50);
 .sortby-text {
     margin: 0;
 }
+
+.sortby-text-default {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.315);
+}
+
