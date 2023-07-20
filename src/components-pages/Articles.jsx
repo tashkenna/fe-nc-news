@@ -10,12 +10,13 @@ export const Articles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+
   const topicQuery = searchParams.get("topic");
   const orderQuery = searchParams.get("order");
   const sortByQuery = searchParams.get("sort_by");
 
   useEffect(() => {
-    getArticles(topicQuery, sortByQuery, orderQuery)
+    getArticles(topicQuery,sortByQuery,orderQuery)
       .then(({ articles }) => {
         setArticles(articles);
         setLoading(false);
@@ -23,15 +24,17 @@ export const Articles = () => {
       .catch((err) => {
         setError(true);
       });
-  }, [topicQuery, orderQuery, sortByQuery]);
+  }, [topicQuery,orderQuery,sortByQuery]);
 
-  const setSortOrder = (direction) => {
+
+   const setSortOrder = (direction) => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("order", direction);
     setSearchParams(newParams);
   };
 
-  const setSortBy = (sort) => {
+
+    const setSortBy = (sort) => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("sort_by", sort);
     setSearchParams(newParams);
@@ -41,6 +44,7 @@ export const Articles = () => {
     <div className="articles-page">
       <h1 className="page-header">all articles</h1>
       <Topics />
+
       <section className="sortby">
       <section className="sortby-section">
       <p className="sortby-text">sort by</p>
