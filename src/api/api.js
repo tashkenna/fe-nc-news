@@ -4,8 +4,8 @@ const api = axios.create({
     baseURL: 'https://be-nc-news-f47c.onrender.com/api'
 })
 
-export const getArticles = async () => {
-const res = await api.get('/articles')
+export const getArticles = async (topic, sort_by) => {
+const res = await api.get(`/articles`, {params: {topic, sort_by}})
 return res.data
 }
 
@@ -26,5 +26,10 @@ export const patchArticleVotes = async (id, body) => {
 
 export const postCommentByArticleID = async (id, body) => {
     const res = await api.post(`articles/${id}/comments`, body)
+    return res.data
+}
+
+export const getTopics = async () => {
+    const res = await api.get ('/topics')
     return res.data
 }

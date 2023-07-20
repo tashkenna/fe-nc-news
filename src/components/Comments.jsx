@@ -23,8 +23,9 @@ const {id} = params
   }, [id]);
 
   if (loading) {
-    return <div>Comments loading...</div>;
+    return <div className="loading-text">loading comments...</div>;
   }
+
 
   const handleCommentPosted = ({comment}) => {
     const newComment = {...comment, votes: 0}
