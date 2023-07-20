@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { getArticles } from "../api/api";
 import { Categories } from "../components/Categories";
 import { Filter } from "../components/Filter";
@@ -11,9 +11,11 @@ const [articles, setArticles] = useState([]);
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState(false);
 const [sortingOption, setSortingOption] = useState("date descending");
+const [searchParams, setSearchParams] = useSearchParams()
 
+const sortByQuery = searchParams.get("topic")
 
-const {topic} = useParams()
+console.log(sortByQuery)
 
 useEffect(() => {
     setLoading(true);
@@ -30,7 +32,7 @@ useEffect(() => {
       });
   },[topic]);
 
-  const sortedArticles = sortArticles(articles, sortingOption);
+const sortedArticles = sortArticles(articles, sortingOption);
 
 return (
   <div className="articles-page">

@@ -3,16 +3,18 @@ import { getArticles } from "../api/api";
 import { ArticleCard } from "../components/ArticleCard";
 import { Categories } from "../components/Categories";
 import { Filter } from "../components/Filter";
-import { sortArticles } from "../components/Utils/sortArticles";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortingOption, setSortingOption] = useState("date descending");
   const [error, setError] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const topicQuery = searchParams.get("topic")
+  // const sortByQuery = searchParams.get("sort_by")
 
   useEffect(() => {
-    getArticles()
+    getArticles(topicQuery)
       .then(({ articles }) => {
         setArticles(articles);
         setLoading(false);
@@ -20,25 +22,23 @@ export const Articles = () => {
       .catch((err) => {
         setError(true);
       });
-    
-  }, []);
+  }, [topicQuery]); 
 
-  const sortedArticles = sortArticles(articles, sortingOption);
 
   return (
     <div className="articles-page">
       <h1 className="page-header">all articles</h1>
       <Categories />
       <section className="filter">
-        <p className="filter-text">sort by:</p>
-        <Filter onChange={(value) => setSortingOption(value)} />
+        <p className="filter-text">sort by:</p> 
+
 
         {loading && <p className="loading-text">loading articles..</p>}
         {error && <p className="loading-text">error fetching content</p>}
 
       </section>
       <section className="articles-container">
-        {sortedArticles.map((article) => (
+        {articles.map((article) => (
           <ArticleCard
             key={article.article_id}
             title={article.title}

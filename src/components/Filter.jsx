@@ -1,46 +1,43 @@
 import { useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export const Filter = (props) => {
-
-  const params = useParams()
-
-
   const options = [
-    "date descending",
-    "date ascending",
-    "votes descending",
-    "votes ascending",
-    "comment count descending",
-    "comment count ascending",
+    "none",
+    "created_at",
+    "votes",
+    "comment_count"
   ];
-  const [selected, setSelected] = useState(options[0]);
-  const [searchParams, setSearchParams] = useSearchParams({});
+
+  const [selected, setSelected] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
 
-  const { onChange } = props;
+  const handleSortByChange = (event) => {
+    const selectedOption = event.target.value;
+    setSelected(selectedOption);
 
-  const handleSelectChange = (e) => {
-    const selectedSort = e.target.value;
-    setSelected(selectedSort);
-    onChange(selectedSort);
-    setSearchParams(selectedSort);
+    if (selectedOption !== "none") {
+      setSearchParams({ sort_by: selectedOption });
+    } else {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("sort_by");
+      setSearchParams(newParams);
+    }
   };
 
   return (
     <form>
       <select
         className="filter-selector"
-        value={selected}
-        onChange={handleSelectChange}
+       value={selected}
+        onChange={handleSortByChange}
       >
-        {options.map((value) => {
-          return (
-            <option value={value} key={value}>
-              {value}
-            </option>
-          );
-        })}
+        {options.map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+        ))}
       </select>
     </form>
   );
