@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api/api";
 import { ArticleCard } from "../components/ArticleCard";
 import { Categories } from "../components/Categories";
-import { Filter } from "../components/Filter";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -11,7 +10,6 @@ export const Articles = () => {
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams()
   const topicQuery = searchParams.get("topic")
-  // const sortByQuery = searchParams.get("sort_by")
 
   useEffect(() => {
     getArticles(topicQuery)
@@ -29,14 +27,10 @@ export const Articles = () => {
     <div className="articles-page">
       <h1 className="page-header">all articles</h1>
       <Categories />
-      <section className="filter">
-        <p className="filter-text">sort by:</p> 
-
-
+    
         {loading && <p className="loading-text">loading articles..</p>}
         {error && <p className="loading-text">error fetching content</p>}
 
-      </section>
       <section className="articles-container">
         {articles.map((article) => (
           <ArticleCard

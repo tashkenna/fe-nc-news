@@ -13,19 +13,8 @@ function App() {
   return <div> 
   <Nav/> 
   <Routes>
- 
     <Route path="/articles" element={<Articles />} />
-
-    {/* <Route path='/articles?topic' element={<Filter />} /> */}
-
-    {/* <Route path='/articles/:topic' element={<Topics />} /> */}
-    
     <Route path='/articles/:id' element={<Article />} />
-    
-    
-    {/* <Route path="*" element={<Error
-    />} />  */}
-
 
   </Routes>
   </div>
