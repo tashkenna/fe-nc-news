@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 
 export const Filter = (props) => {
+
+  const params = useParams()
+
+
   const options = [
     "date descending",
     "date ascending",
@@ -13,14 +17,13 @@ export const Filter = (props) => {
   const [selected, setSelected] = useState(options[0]);
   const [searchParams, setSearchParams] = useSearchParams({});
 
-  console.log(searchParams)
+
   const { onChange } = props;
 
   const handleSelectChange = (e) => {
     const selectedSort = e.target.value;
     setSelected(selectedSort);
     onChange(selectedSort);
-    console.log(selectedSort)
     setSearchParams(selectedSort);
   };
 

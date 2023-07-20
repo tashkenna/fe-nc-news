@@ -9,6 +9,7 @@ export const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortingOption, setSortingOption] = useState("date descending");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getArticles()
@@ -16,14 +17,13 @@ export const Articles = () => {
         setArticles(articles);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setError(true);
+      });
+    
   }, []);
 
   const sortedArticles = sortArticles(articles, sortingOption);
-
-  if (loading) {
-    return <div className="loading-text">loading articles...</div>;
-  }
 
   return (
     <div className="articles-page">
@@ -32,6 +32,10 @@ export const Articles = () => {
       <section className="filter">
         <p className="filter-text">sort by:</p>
         <Filter onChange={(value) => setSortingOption(value)} />
+
+        {loading && <p className="loading-text">loading articles..</p>}
+        {error && <p className="loading-text">error fetching content</p>}
+
       </section>
       <section className="articles-container">
         {sortedArticles.map((article) => (
