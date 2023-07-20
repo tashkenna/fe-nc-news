@@ -257,3 +257,38 @@ color: rgb(216,55,50);
     border-radius: 5rem;
     text-align: center;
 }
+
+
+.sortby-buttons {
+    align-items: center;
+    background-color: rgb(216,55,50);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    font-weight: 200;
+    height: 1rem;
+    margin: 0.1rem;
+    transition: transform 0.3s;
+ 
+}
+
+.sortby-buttons:hover {
+    transform: scale(1.1);
+  }
+
+.sortby {
+
+    font-size: 0.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sortby-text {
+    margin: 0;
+}

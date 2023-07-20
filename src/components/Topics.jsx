@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { getTopics } from "../api/api";
 import { useEffect, useState } from "react";
 
-export const Categories = () => {
+export const Topics = () => {
   const [topics, setTopics] = useState([]);
   const [error, setError] = useState(false);
 
