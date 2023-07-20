@@ -4,8 +4,8 @@ const api = axios.create({
     baseURL: 'https://be-nc-news-f47c.onrender.com/api'
 })
 
-export const getArticles = async (topic, sort_by) => {
-const res = await api.get(`/articles`, {params: {topic, sort_by}})
+export const getArticles = async (topic, sort_by, order) => {
+const res = await api.get(`/articles`, {params: {topic, sort_by, order}})
 return res.data
 }
 
