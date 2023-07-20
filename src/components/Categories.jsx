@@ -19,9 +19,6 @@ export const Categories = () => {
     })
   }, [] )
 
-
-  console.log(topics)
-
   return (
     <div className="topic-buttons">
     {error && <p>error retrieving topics</p>}
