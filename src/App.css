@@ -74,18 +74,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25rem;
+    width: 20rem;
     background-color: rgba(128, 128, 128, 0.087);
-    margin: 2rem;
+    margin: 0.5rem;
 }
 
 .article-preview-image {
     object-fit: cover;
-    height:18rem;
-    width: 25rem;
+    height:16rem;
+    width: 20rem;
     padding: 1rem;
     padding-top: 0rem;
-  
  
 }
 
@@ -289,11 +288,12 @@ color: rgb(216,55,50);
 }
 
 .sortby-text {
-    margin: 0;
+    margin: 5px;
 }
 
 .sortby-text-default {
-    margin: 0;
+    margin: 0.5rem;
+    margin-bottom: 0.5rem;
     color: rgba(0, 0, 0, 0.315);
 }
 
