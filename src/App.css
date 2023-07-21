@@ -297,3 +297,54 @@ color: rgb(216,55,50);
     color: rgba(0, 0, 0, 0.315);
 }
 
+
+.users-page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    margin: 2rem;
+}
+
+.user-image {
+    object-fit: cover;
+    height:25rem;
+    width: 25rem;
+    padding: 1rem;
+    padding-top: 0rem;
+}
+
+.login-logout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 2rem;
+  }
+
+
+.logout-button {
+    align-items: center;
+    background-color: rgb(216,55,50);
+    color: rgb(255, 255, 255);
+    border: rgb(216,55,50);
+    border-radius: 2rem;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 200;
+    height: 2rem;
+    transition: transform 0.3s;
+   
+
+}
+
+.logout-button:hover {
+    transform: scale(1.2);
+  }

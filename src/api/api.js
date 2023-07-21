@@ -33,3 +33,12 @@ export const getTopics = async () => {
     const res = await api.get ('/topics')
     return res.data
 }
+
+export const getUsers = async () => {
+    const res = await api.get('/users')
+    return res.data
+}
+
+export const deleteComments = async (id) => {
+    await api.delete(`/comments/${id}`)
+}

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { postCommentByArticleID } from "../api/api";
+import { UserContext } from "../context/UserContext";
 
 export const CommentInput = (params) => {
   const [comment, setComment] = useState([]);
@@ -7,7 +8,9 @@ export const CommentInput = (params) => {
   const [error, setError] = useState(false);
   const [commentWarning, setCommentWarning] = useState(false);
   const [commentEmpty, setCommentEmpty] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false)
 
+  const { setUser, user } = useContext(UserContext);
   const { id, onCommentPosted } = params;
 
   const handleSubmit = (e) => {
@@ -23,11 +26,16 @@ export const CommentInput = (params) => {
       return;
     }
 
+    if (user.length === 0) {
+      setLoggedOut(true)
+      return;
+    }
+
     setLoading(true);
     setError(false);
 
     const body = {
-      username: "grumpy19",
+      username: user,
       body: comment
     };
 
@@ -67,10 +75,13 @@ export const CommentInput = (params) => {
           onChange={handleCommentChange}
         />
         {commentWarning ? (
-          <p>Comment is {comment.length - 300} characters over limit</p>
+          <p>comment is {comment.length - 300} characters over limit</p>
         ) : null}
-        {commentEmpty ? <p>Comment is empty</p> : null}
-        {error ? <p>Error posting comment</p> : null}
+       
+        {commentEmpty ? <p>comment is empty</p> : null}
+        {loggedOut ? <p>please log in to comment</p> : null}
+        {error ? <p>error posting comment</p> : null}
+        
         <button
           className="comment-button"
           type="submit"
