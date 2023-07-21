@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { postCommentByArticleID } from "../api/api";
 import { UserContext } from "../context/UserContext";
+import toast from 'react-hot-toast';
 
 export const CommentInput = (params) => {
   const [comment, setComment] = useState([]);
@@ -38,7 +39,7 @@ export const CommentInput = (params) => {
       username: user,
       body: comment
     };
-
+    toast.promise(
     postCommentByArticleID(id, body)
       .then((data) => {
         setLoading(false);
@@ -48,9 +49,14 @@ export const CommentInput = (params) => {
 
       .catch((err) => {
         setError(true);
-        setLoading(false);
+     
   
-      });
+      })
+      , {
+        loading: 'comment posting...',
+        success: 'comment posted',
+        error: 'there was an error posting your comment, please try again',
+      })
   };
 
   const handleCommentChange = (e) => {
@@ -66,7 +72,6 @@ export const CommentInput = (params) => {
 
   return (
     <div className="post-comment-card">
-      {loading ? <p className="loading-text">loading comment...</p> : null}
       <form className="comment-form" onSubmit={handleSubmit}>
         <textarea
           className="comment-input"

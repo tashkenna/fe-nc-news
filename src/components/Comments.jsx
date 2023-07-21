@@ -3,12 +3,14 @@ import { deleteComments, getCommentsByArticleID } from "../api/api";
 import { CommentCard } from "./CommentsCard";
 import { CommentInput } from "./CommentInput";
 import { UserContext } from "../context/UserContext";
+import toast from 'react-hot-toast';
 
 export const Comments = (params) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteError, setDeleteError] = useState(false);
+  const [error, setError] = useState(false)
 
   const { id } = params;
 
@@ -22,7 +24,9 @@ export const Comments = (params) => {
         setComments(comments);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setError(true)
+      });
   }, [id]);
 
   if (loading && comments.length > 0) {
@@ -35,22 +39,31 @@ export const Comments = (params) => {
   };
 
   const handleDelete = (comment_id) => {
-    setDeleteLoading(true);
+    setDeleteLoading(true)
+  toast.promise(
     deleteComments(comment_id)
       .then(() => {
         setComments((prevComments) =>
           prevComments.filter((comment) => comment.comment_id !== comment_id)
         );
-        setDeleteLoading(false);
+        setDeleteLoading(false)
       })
       .catch((err) => {
-        setDeleteError(true);
-      });
-  };
+        setDeleteError(true)
+      }),
+    {
+      loading: 'deleting...',
+      success: 'comment deleted',
+      error: 'there was an error deleting your comment, please try again',
+    }
+  );
+};
+    
+
 
   return (
     <div className="comment-section">
-      {comments === [] ? (
+      {comments.length === 0 ? (
         <>
           <h2>Comments</h2>
           <CommentInput id={id} onCommentPosted={handleCommentPosted} />
@@ -60,9 +73,8 @@ export const Comments = (params) => {
         <>
           <h2>Comments</h2>
           <CommentInput id={id} onCommentPosted={handleCommentPosted} />
-          
-          {deleteLoading && <p>deleting...</p>}
-          {deleteError && <p>there was an error deleting your comment, please try again</p>}
+
+          {error && <p>error getting comments</p>}
 
           {comments.map((comment) => (
             <CommentCard
@@ -73,6 +85,8 @@ export const Comments = (params) => {
               id={comment.comment_id}
               comment_id={comment.comment_id}
               handleDelete={handleDelete}
+              deleteLoading={deleteLoading}
+              deleteError={deleteError}
             />
           ))}
         </>
