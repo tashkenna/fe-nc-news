@@ -37,7 +37,7 @@ export const Login = () => {
         )}
 
       </section>
-          {loading ? (<p>users loading...</p>) : (
+          {loading ? (<p className="loading-text" >users loading...</p>) : (
       <section className="users-page">
         {users.map((user) => {
           return (

@@ -47,19 +47,20 @@ export const Comments = (params) => {
           prevComments.filter((comment) => comment.comment_id !== comment_id)
         );
         setDeleteLoading(false)
+        return "comment deleted"
       })
-      .catch((err) => {
+      .catch((error) => {
         setDeleteError(true)
+        setDeleteLoading(false);
+        throw new Error("error deleting comment")
       }),
-    {
-      loading: 'deleting...',
-      success: 'comment deleted',
-      error: 'there was an error deleting your comment, please try again',
+    { 
+  loading: "deleting...", 
+  success: (msg) => msg,
+  error: (err) => err.message,
     }
   );
 };
-    
-
 
   return (
     <div className="comment-section">

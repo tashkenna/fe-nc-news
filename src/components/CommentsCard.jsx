@@ -10,8 +10,8 @@ export const CommentCard = (props) => {
         <p className="comment-author">{author}</p>
         <p className="comment-body">{body}</p>
         <p className="comment-votes">votes: {votes}</p>
-        {user === author && (<button disabled={deleteLoading || deleteError} className="comment-button" onClick={()=>handleDelete(id)}>delete</button>)}
-
+        {user === author && (<button disabled={deleteLoading} className="comment-button" onClick={()=>handleDelete(id)}  style={{ cursor: deleteLoading? 'not-allowed' : 'pointer',
+        color: deleteLoading ? "grey" : "white"}}>delete</button>)}
       </div>
     );
   };

@@ -90,7 +90,9 @@ export const CommentInput = (params) => {
         <button
           className="comment-button"
           type="submit"
-          disabled={commentWarning || loading}
+          disabled={commentWarning || loading || commentEmpty || loggedOut}
+          style={{ cursor: commentWarning || loading || commentEmpty || loggedOut ? 'not-allowed' : 'pointer',
+        color: commentWarning || loading || commentEmpty || loggedOut ? "grey" : "white"}}
         >
           comment
         </button>
