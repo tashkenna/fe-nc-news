@@ -3,6 +3,7 @@ import { getArticles } from "../api/api";
 import { ArticleCard } from "../components/ArticleCard";
 import { Topics } from "../components/Topics";
 import { useSearchParams } from "react-router-dom";
+import { Error } from "./Error";
 
 
 export const Articles = () => {
@@ -10,10 +11,13 @@ export const Articles = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [apiError, setApiError] = useState(null)
+ 
 
   const topicQuery = searchParams.get("topic");
   const orderQuery = searchParams.get("order");
   const sortByQuery = searchParams.get("sort_by");
+  
 
   useEffect(() => {
     getArticles(topicQuery,sortByQuery,orderQuery)
@@ -23,9 +27,19 @@ export const Articles = () => {
       })
       .catch((err) => {
         setError(true);
+        setApiError(err)
+      
       });
   }, [topicQuery,orderQuery,sortByQuery]);
 
+  if(apiError) {
+    return (
+      <Error 
+      errorStatus={apiError.response.status}
+      errorMessage={apiError.response.data.msg}
+      />
+    )
+  }
 
    const setSortOrder = (direction) => {
     const newParams = new URLSearchParams(searchParams);

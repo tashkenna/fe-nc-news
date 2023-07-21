@@ -348,3 +348,11 @@ color: rgb(216,55,50);
 .logout-button:hover {
     transform: scale(1.2);
   }
+
+
+  .error-page {
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }

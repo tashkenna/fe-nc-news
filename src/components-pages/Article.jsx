@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleByID, patchArticleVotes } from "../api/api";
 import { Comments } from "../components/Comments";
+import { Error } from "./Error";
 export const Article = () => {
   const { id } = useParams();
 
@@ -9,6 +10,7 @@ export const Article = () => {
   const [loading, setLoading] = useState(true);
   const [userVotes, setUserVotes] = useState(0);
   const [isError, setIsError] = useState(false);
+   const [apiError, setApiError] = useState(null)
 
   useEffect(() => {
     getArticleByID(id)
@@ -19,8 +21,18 @@ export const Article = () => {
       .catch((err) => {
         setLoading(false);
         setIsError(true);
+         setApiError(err)
       });
   }, [id]);
+
+  if(apiError) {
+  return (
+    <Error 
+    errorStatus={apiError.response.status}
+    errorMessage={apiError.response.data.msg}
+    />
+  )
+}
 
   if (loading) {
     return <div className="loading-text">loading article...</div>;
