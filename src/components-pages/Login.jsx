@@ -7,10 +7,14 @@ import { UserCard } from "../components/UserCard";
 export const Login = () => {
   const [users, setUsers] = useState([]);
   const { setUser, user } = useContext(UserContext);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     getUsers().then(({ users }) => {
+      setLoading(false)
       setUsers(users);
+      
     });
   }, []);
 
@@ -33,7 +37,7 @@ export const Login = () => {
         )}
 
       </section>
-
+          {loading ? (<p>users loading...</p>) : (
       <section className="users-page">
         {users.map((user) => {
           return (
@@ -54,7 +58,7 @@ export const Login = () => {
             </div>
           );
         })}
-      </section>
+      </section>)}
     </div>
   );
 };
