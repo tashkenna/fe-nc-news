@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { getArticleByID, patchArticleVotes } from "../api/api";
 import { Comments } from "../components/Comments";
 import { Error } from "./Error";
+
 export const Article = () => {
   const { id } = useParams();
 

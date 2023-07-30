@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
-import { postCommentByArticleID } from "../api/api";
 import { UserContext } from "../context/UserContext";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+
+import { postCommentByArticleID } from "../api/api";
 
 export const CommentInput = (params) => {
   const [comment, setComment] = useState([]);
@@ -9,9 +10,9 @@ export const CommentInput = (params) => {
   const [error, setError] = useState(false);
   const [commentWarning, setCommentWarning] = useState(false);
   const [commentEmpty, setCommentEmpty] = useState(false);
-  const [loggedOut, setLoggedOut] = useState(false)
+  const [loggedOut, setLoggedOut] = useState(false);
 
-  const { setUser, user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { id, onCommentPosted } = params;
 
   const handleSubmit = (e) => {
@@ -28,7 +29,7 @@ export const CommentInput = (params) => {
     }
 
     if (user.length === 0) {
-      setLoggedOut(true)
+      setLoggedOut(true);
       return;
     }
 
@@ -37,26 +38,25 @@ export const CommentInput = (params) => {
 
     const body = {
       username: user,
-      body: comment
+      body: comment,
     };
     toast.promise(
-    postCommentByArticleID(id, body)
-      .then((data) => {
-        setLoading(false);
-        onCommentPosted(data);
-        setComment("");
-      })
+      postCommentByArticleID(id, body)
+        .then((data) => {
+          setLoading(false);
+          onCommentPosted(data);
+          setComment("");
+        })
 
-      .catch((err) => {
-        setError(true);
-     
-  
-      })
-      , {
-        loading: 'comment posting...',
-        success: 'comment posted',
-        error: 'there was an error posting your comment, please try again',
-      })
+        .catch((err) => {
+          setError(true);
+        }),
+      {
+        loading: "comment posting...",
+        success: "comment posted",
+        error: "there was an error posting your comment, please try again",
+      }
+    );
   };
 
   const handleCommentChange = (e) => {
@@ -82,17 +82,25 @@ export const CommentInput = (params) => {
         {commentWarning ? (
           <p>comment is {comment.length - 300} characters over limit</p>
         ) : null}
-       
+
         {commentEmpty ? <p>comment is empty</p> : null}
         {loggedOut ? <p>please log in to comment</p> : null}
         {error ? <p>error posting comment</p> : null}
-        
+
         <button
           className="comment-button"
           type="submit"
           disabled={commentWarning || loading || commentEmpty || loggedOut}
-          style={{ cursor: commentWarning || loading || commentEmpty || loggedOut ? 'not-allowed' : 'pointer',
-        color: commentWarning || loading || commentEmpty || loggedOut ? "grey" : "white"}}
+          style={{
+            cursor:
+              commentWarning || loading || commentEmpty || loggedOut
+                ? "not-allowed"
+                : "pointer",
+            color:
+              commentWarning || loading || commentEmpty || loggedOut
+                ? "grey"
+                : "white",
+          }}
         >
           comment
         </button>

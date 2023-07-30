@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { getTopics } from "../api/api";
-import { useEffect, useState } from "react";
 
 export const Topics = () => {
   const [topics, setTopics] = useState([]);

@@ -1,9 +1,7 @@
-
 import { Link } from "react-router-dom";
 
-
 export const ArticleCard = (props) => {
-  const { title, topic, article_img_url, article_id} = props;
+  const { title, topic, article_img_url, article_id } = props;
 
   return (
     <div className="article-preview">

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { getArticles } from "../api/api";
 import { ArticleCard } from "../components/ArticleCard";
 import { Topics } from "../components/Topics";
-import { useSearchParams } from "react-router-dom";
 import { Error } from "./Error";
 
 

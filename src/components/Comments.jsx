@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import toast from 'react-hot-toast';
+
 import { deleteComments, getCommentsByArticleID } from "../api/api";
 import { CommentCard } from "./CommentsCard";
 import { CommentInput } from "./CommentInput";
-import { UserContext } from "../context/UserContext";
-import toast from 'react-hot-toast';
+
+
 
 export const Comments = (params) => {
   const [comments, setComments] = useState([]);

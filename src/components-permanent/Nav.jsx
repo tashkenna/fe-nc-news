@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom"
 import { Header } from "./Header"
-import { Login } from "../components-pages/Login"
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 
 export const Nav = () => {
-    const { setUser, user } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     return (
         <div className="nav">
             <Header/>
